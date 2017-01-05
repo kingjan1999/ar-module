@@ -55,5 +55,16 @@ describe('studienplan', () => {
     sp.p4 = consts.faecher.ma;
     sp.p5 = consts.faecher.ge;
     sp.getStep().should.equal(4);
+
+    sp.addFach(consts.faecher.ds, 'b', {stunden11: 4, stunden12: 4}, 'gk');
+    sp.getStep().should.equal(5);
+  });
+
+  it('has array fach should work', () => {
+    let sp = new Studienplan();
+
+    sp.addFach(consts.faecher.ds, 'b', {stunden11: 4, stunden12: 4}, 'gk');
+    sp.getFach('ds').typ.should.equal('b');
+    sp.hasArrayFach(['ds', 'bi']).should.equal(true);
   });
 });
