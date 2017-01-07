@@ -2,11 +2,11 @@
   "name": "abirechner",
   "version": "0.0.1",
   "description": "Module for Abi-Rechner",
-  "homepage": "",
+  "homepage": "https://kingjan1999.github.io/abirechner",
   "author": {
     "name": "kingjan1999",
     "email": "king-jan1999@hotmail.de",
-    "url": ""
+    "url": "https://jb31.me"
   },
   "files": [
     "dist"
@@ -32,6 +32,7 @@
     "eslint-plugin-babel": "^4.0.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
+    "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^3.0.1",
     "gulp-exclude-gitignore": "^1.0.0",
     "gulp-istanbul": "^1.0.0",
@@ -47,7 +48,13 @@
       "mocha": true
     }
   },
-  "repository": "kingjan1999/abirechner",
+  "repository": {
+    "url": "https://github.com/kingjan1999/ar-module",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/kingjan1999/ar-module/issues"
+  },
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
@@ -56,5 +63,8 @@
   "dependencies": {
     "underscore": "^1.8.3",
     "underscore.string": "^3.3.4"
+  },
+  "engines": {
+    "node": ">=6"
   }
 }

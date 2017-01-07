@@ -1,4 +1,4 @@
-# ar-module [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# ar-module [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > Module for Abi-Rechner
 
 ## Installation
@@ -25,3 +25,5 @@ MIT © [kingjan1999]()
 [travis-url]: https://travis-ci.org/kingjan1999/ar-module
 [daviddm-image]: https://david-dm.org/kingjan1999/ar-module.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/kingjan1999/ar-module
+[coveralls-image]: https://coveralls.io/repos//kingjan1999/ar-module/badge.svg
+[coveralls-url]: https://coveralls.io/r/kingjan1999/ar-module
