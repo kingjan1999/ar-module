@@ -54,6 +54,10 @@ describe('studienplan', () => {
     sp.p1.should.equal('de');
 
     sp.serialize().should.equal('{"schwerpunkt":"spr","p1":"de","p2":"la","p3":"ma","p4":"ge","p5":"ph","fachstunden":{"de":{"typ":"p1","anforderung":"lk","stunden":{"stunden111":4,"stunden112":4,"stunden121":4,"stunden122":4,"alts":{}}}}}');
+
+    let sp2 = new Studienplan('spr', {p1: 'de', p2: 'la', p3: 'ma', p4: 'ge', p5: 'ph'}, {}, true);
+    sp2.getStunden('111').should.equal(20);
+    sp2.getFach('ma').anforderung.should.equal('lk');
   });
   it('step should be correctly determined!', () => {
     let sp = new Studienplan();
