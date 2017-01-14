@@ -28,6 +28,7 @@
     "chai": "^3.5.0",
     "del": "^2.0.2",
     "eslint": "^3.13.0",
+    "eslint-config-airbnb": "^14.0.0",
     "eslint-config-xo-space": "^0.15.0",
     "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-import": "^2.2.0",
