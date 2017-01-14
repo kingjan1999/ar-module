@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var path = require('path');
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
