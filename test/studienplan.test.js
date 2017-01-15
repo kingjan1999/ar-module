@@ -126,8 +126,25 @@ describe('studienplan', () => {
     sp.getPossibleP4().length.should.equal(11);
 
     sp = new Studienplan('spr', { p1: 'en', p2: 'la', p3: 'de' });
-
     sp.getPossibleP4().should.not.include.members(['sn', 'sa', 'fr']); // do not include a faecher
+
+    sp = new Studienplan('gw', { p1: 'ge', p2: 'ek', p3: 'po' }, {}, true); // unrealistic
+    sp.getPossibleP4().should.include.members(['de', 'la', 'fr']);
+    sp.getPossibleP4().should.not.include.members(['er', 'kr', 'ek']);
+    sp.getPossibleP4().forEach((val) => {
+      consts.faecher[val].feld.should.not.equal('b');
+    });
+
+    sp = new Studienplan('spr', { p1: 'la', p2: 'de', p3: 'en' }, {}, true); // unrealistic
+    sp.getPossibleP4().forEach((val) => {
+      consts.faecher[val].feld.should.not.equal('a');
+    });
+
+    sp = new Studienplan('spr', { p1: 'la', p2: 'fr', p3: 'en' }, {}, true); // unrealistic
+    sp.getPossibleP4().forEach((val) => {
+      consts.faecher[val].feld.should.not.equal('a');
+    });
+    sp.getPossibleP4().should.eql(['ma']);
   });
 
   it('getPossibleP5s should work', () => {
@@ -140,6 +157,15 @@ describe('studienplan', () => {
 
     sp.getPossibleP5().should.not.include.members(['sn', 'sa', 'fr']); // do not include a faecher
     sp.getPossibleP5().should.include.members(['ge', 'po', 'ek']);
+
+    sp = new Studienplan('spr', { p1: 'en', p2: 'la', p3: 'ge', p4: 'ph' }, {}, true);
+    sp.getPossibleP5().should.eql(['de', 'ma']);
+
+    sp = new Studienplan('gw', { p1: 'ge', p2: 'ma', p3: 'po', p4: 'ek' }, {}, true); // unrealistic
+    sp.getPossibleP5().should.include.members(['de', 'la', 'fr']);
+
+    sp = new Studienplan('gw', { p1: 'ge', p2: 'la', p3: 'po', p4: 'de' }, {}, true);
+    sp.getPossibleP5().should.include.members(['ma', 'ph', 'ch']);
   });
 
   it('getKernfachCount should work', () => {

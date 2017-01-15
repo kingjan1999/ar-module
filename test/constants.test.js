@@ -33,4 +33,9 @@ describe('helper functions / consts', () => {
     consts.isNW(consts.faecher.ch).should.equal(true);
     consts.isNW('fr').should.equal(false);
   });
+  it('getForFeld should work', () => {
+    consts.getForFeld('a').forEach((val) => {
+      val.feld.should.equal('a');
+    });
+  });
 });
