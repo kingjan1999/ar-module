@@ -10,18 +10,9 @@
   },
   "root": true,
   "plugins": [
-    "you-dont-need-lodash-underscore"
   ],
   "extends": [
     "eslint:recommended",
     "airbnb"
-  ],
-  "rules": {
-    "you-dont-need-lodash-underscore/for-each": 1,
-    "you-dont-need-lodash-underscore/concat": 1,
-    "you-dont-need-lodash-underscore/each": 1,
-    "you-dont-need-lodash-underscore/assign": 1,
-    "you-dont-need-lodash-underscore/reduce": 1,
-    "you-dont-need-lodash-underscore/map": 1
-  }
+  ]
 }
