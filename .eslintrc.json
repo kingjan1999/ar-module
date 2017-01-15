@@ -1,0 +1,18 @@
+{
+  "env": {
+    "node": true,
+    "es6": true,
+    "jasmine": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "root": true,
+  "plugins": [
+  ],
+  "extends": [
+    "eslint:recommended",
+    "airbnb"
+  ]
+}
