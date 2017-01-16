@@ -186,6 +186,8 @@ describe('studienplan', () => {
   it('getPossibleEF should work', () => {
     let sp = new Studienplan('gw', { p1: 'ge', p2: 'ma', p3: 'po', p4: 'de', p5: 'ph' }, {}, true);
     sp.getPossibleEF().faecher.should.eql(['en', 'la', 'sn', 'fr', 'bi', 'ch']);
+    sp.getPossibleEF().belegung.stunden111.should.equal(4);
+    sp.getPossibleEF().belegung.alts[0].stunden121.should.equal(4);
 
     sp = new Studienplan('spr', { p1: 'la', p2: 'de', p3: 'ge', p4: 'ma', p5: 'er' }, {}, true);
     sp.getPossibleEF().faecher.should.eql(['en', 'sn', 'fr']);
