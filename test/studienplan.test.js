@@ -182,4 +182,27 @@ describe('studienplan', () => {
     sp.getFeldCount().b.should.equal(2);
     sp.getFeldCount().c.should.equal(1);
   });
+
+  it('getPossibleEF should work', () => {
+    let sp = new Studienplan('gw', { p1: 'ge', p2: 'ma', p3: 'po', p4: 'de', p5: 'ph' }, {}, true);
+    sp.getPossibleEF().faecher.should.eql(['en', 'la', 'sn', 'fr', 'bi', 'ch']);
+
+    sp = new Studienplan('spr', { p1: 'la', p2: 'de', p3: 'ge', p4: 'ma', p5: 'er' }, {}, true);
+    sp.getPossibleEF().faecher.should.eql(['en', 'sn', 'fr']);
+    sp = new Studienplan('spr', { p1: 'la', p2: 'en', p3: 'ge', p4: 'ma', p5: 'er' }, {}, true);
+    should.not.exist(sp.getPossibleEF().faecher);
+
+    sp = new Studienplan('nw', { p1: 'ph', p2: 'ma', p3: 'ge', p4: 'de', p5: 'po' }, {}, true);
+    sp.getPossibleEF().faecher.should.eql(['bi', 'ch']);
+    sp = new Studienplan('nw', { p1: 'ph', p2: 'ma', p3: 'ge', p4: 'de', p5: 'bi' }, {}, true);
+    should.not.exist(sp.getPossibleEF().faecher);
+
+    sp = new Studienplan('mk', { p1: 'mu', p2: 'ma', p3: 'po', p4: 'de', p5: 'ph' }, {}, true);
+    sp.getPossibleEF().faecher.should.eql(['ku', 'ds']);
+    sp = new Studienplan('mk', { p1: 'ku', p2: 'ma', p3: 'po', p4: 'de', p5: 'ph' }, {}, true);
+    sp.getPossibleEF().faecher.should.eql(['mu']);
+
+    sp = new Studienplan('unbekannt');
+    should.not.exist(sp.getPossibleEF().faecher);
+  });
 });
