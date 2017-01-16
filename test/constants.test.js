@@ -38,4 +38,21 @@ describe('helper functions / consts', () => {
       val.feld.should.equal('a');
     });
   });
+  it('parseBelegungAlts should work', () => {
+    let belegung = consts.parseBelegungAlts('4x4');
+    belegung.stunden111.should.equal(4);
+
+    belegung = consts.parseBelegungAlts('4x4|2x2x11|af');
+    belegung.stunden121.should.equal(4);
+    belegung.alts[0].stunden111.should.equal(2);
+    belegung.alts[0].stunden121.should.equal(0);
+    belegung.alts[1].stunden111.should.equal(4);
+
+    belegung = consts.parseBelegungAlts('2x4x11|2x2x12|2x4x12|2x4x11|4x2');
+    belegung.stunden111.should.equal(4);
+    belegung.alts[0].stunden121.should.equal(2);
+    belegung.alts[1].stunden121.should.equal(4);
+    belegung.alts[2].stunden111.should.equal(4);
+    belegung.alts[3].stunden111.should.equal(2);
+  });
 });
