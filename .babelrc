@@ -3,6 +3,7 @@
     "latest"
   ],
   "plugins": [
+    "lodash",
     "transform-runtime"
   ]
 }
