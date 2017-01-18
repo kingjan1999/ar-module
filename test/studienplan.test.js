@@ -59,6 +59,14 @@ describe('studienplan', () => {
     sp.hasArrayFach(['ds', 'bi']).should.equal(true);
   });
 
+  it('hasFach should work', () => {
+    const sp = new Studienplan();
+    sp.addFach(consts.faecher.ds, 'b', {}, 'gk');
+
+    sp.hasFach('de').should.equal(false);
+    sp.hasFach('ds').should.equal(true);
+  });
+
   it('appearances should be counted correctly', () => {
     const sp = new Studienplan('spr', { p1: 'la' }, {}, true);
 
@@ -178,6 +186,8 @@ describe('studienplan', () => {
 
   it('getFeldCount should work', () => {
     const sp = new Studienplan('gw', { p1: 'ge', p2: 'ma', p3: 'po', p4: 'de' }, {}, true);
+    sp.addFach(consts.faecher.sp, 'b', consts.parseBelegungAlts('4x2'));
+
     sp.getFeldCount().a.should.equal(1);
     sp.getFeldCount().b.should.equal(2);
     sp.getFeldCount().c.should.equal(1);
@@ -206,5 +216,15 @@ describe('studienplan', () => {
 
     sp = new Studienplan('unbekannt');
     should.not.exist(sp.getPossibleEF().faecher);
+  });
+
+  it('addDefaults should work', () => {
+    const sp = new Studienplan();
+
+    sp.addDefaultFaecher();
+    sp.hasFach('sp').should.equal(true);
+    sp.fachstunden.sp.stunden.stunden111.should.equal(2);
+
+    sp.hasFach('la').should.equal(false);
   });
 });
