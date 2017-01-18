@@ -34,7 +34,9 @@
     "eslint-plugin-babel": "^4.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-lodash": "^2.3.2",
     "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-unicorn": "^1.0.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
     "gulp-coveralls": "^0.1.4",
@@ -46,12 +48,6 @@
     "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0",
     "isparta": "^4.0.0"
-  },
-  "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "mocha": true
-    }
   },
   "repository": {
     "url": "https://github.com/kingjan1999/ar-module",
