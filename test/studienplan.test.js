@@ -30,6 +30,16 @@ describe('studienplan', () => {
     sp2.getStunden('111').should.equal(20);
     sp2.getFach('ma').anforderung.should.equal('lk');
   });
+  it('addFach should work and overwrite', () => {
+    const sp = new Studienplan();
+
+    sp.addFach(consts.faecher.bi);
+    sp.fachstunden.bi.stunden.stunden111.should.equal(4);
+    sp.fachstunden.bi.stunden.stunden111 = 3;
+    sp.fachstunden.bi.stunden.stunden111.should.equal(3);
+    sp.addFach(consts.faecher.bi);
+    sp.fachstunden.bi.stunden.stunden111.should.equal(4);
+  });
   it('step should be correctly determined!', () => {
     const sp = new Studienplan();
     sp.getStep().should.equal(1);
@@ -223,8 +233,12 @@ describe('studienplan', () => {
 
     sp.addDefaultFaecher();
     sp.hasFach('sp').should.equal(true);
-    sp.fachstunden.sp.stunden.stunden111.should.equal(2);
+    sp.fachstunden.de.stunden.stunden111.should.equal(4);
+    sp.fachstunden.de.stunden.stunden111 = 2;
 
     sp.hasFach('la').should.equal(false);
+    sp.addDefaultFaecher();
+    sp.hasFach('sf').should.equal(true);
+    sp.fachstunden.de.stunden.stunden111.should.equal(2);
   });
 });
