@@ -88,6 +88,13 @@ describe('studienplan', () => {
     sp.countAppearance(['de', 'ds', 'fr']).should.equal(0);
   });
 
+  it('filterExisting should work', () => {
+    const sp = new Studienplan('gw', { p1: 'ge', p2: 'ma', p3: 'po', p4: 'de', p5: 'ph' });
+    sp.addFach(consts.faecher.la);
+
+    sp.filterExisting(['de', 'ma', 'la', 'ds']).should.eql(['ds']);
+  });
+
   it('getEF should work', () => {
     const sp = new Studienplan();
 
@@ -240,5 +247,38 @@ describe('studienplan', () => {
     sp.addDefaultFaecher();
     sp.hasFach('sf').should.equal(true);
     sp.fachstunden.de.stunden.stunden111.should.equal(2);
+  });
+
+  it('getChooseableFaecher should work', () => {
+    let sp = new Studienplan();
+
+    sp.addDefaultFaecher();
+    sp.addFach(consts.faecher.ds, 'b', consts.parseBelegungAlts('2x2x11'));
+
+    sp.getChooseableFaecher().should.include({
+      faecher: [consts.faecher.er, consts.faecher.kr, consts.faecher.wn],
+      belegung: consts.parseBelegungAlts('4x2'),
+    });
+
+    sp.getChooseableFaecher().should.not.include({
+      faecher: [consts.faecher.mu, consts.faecher.ku, consts.faecher.ds],
+      belegung: consts.parseBelegungAlts('2x2x11|2x2x12|4x2'),
+    });
+
+    sp = new Studienplan('gw');
+    sp.addFach(consts.faecher.bi, 'ef');
+
+    sp.getChooseableFaecher().should.include({
+      faecher: [consts.faecher.ph, consts.faecher.ch],
+      belegung: consts.parseBelegungAlts('4x4'),
+    });
+
+    sp = new Studienplan('gw');
+    sp.addFach(consts.faecher.en, 'ef');
+
+    sp.getChooseableFaecher().should.include({
+      faecher: [consts.faecher.la, consts.faecher.sn, consts.faecher.fr],
+      belegung: consts.parseBelegungAlts('4x4'),
+    });
   });
 });

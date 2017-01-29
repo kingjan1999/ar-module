@@ -2,7 +2,7 @@
 import chai from 'chai';
 import * as consts from '../lib/constants';
 
-chai.should();
+const should = chai.should();
 
 describe('helper functions / consts', () => {
   it('faecher should be exported!', () => {
@@ -54,5 +54,15 @@ describe('helper functions / consts', () => {
     belegung.alts[1].stunden121.should.equal(4);
     belegung.alts[2].stunden111.should.equal(4);
     belegung.alts[3].stunden111.should.equal(2);
+  });
+  it('kzToFach should work', () => {
+    consts.kzToFach('de').should.equal(consts.faecher.de);
+    consts.kzToFach('po').should.equal(consts.faecher.po);
+    should.not.exist(consts.kzToFach('blub'));
+    consts.kzToFach(['de', 'ma']).should.eql([consts.faecher.de, consts.faecher.ma]);
+  });
+  it('fachToKz should work', () => {
+    consts.fachToKz(consts.faecher.bi).should.equal('bi');
+    consts.fachToKz([consts.faecher.ch, consts.faecher.ds]).should.eql(['ch', 'ds']);
   });
 });
