@@ -30,6 +30,15 @@ describe('studienplan', () => {
     sp2.getStunden('111').should.equal(20);
     sp2.getFach('ma').anforderung.should.equal('lk');
   });
+  it('generatePStunden should work!', () => {
+    const sp = new Studienplan('gw');
+
+    sp.p1 = 'ge';
+    sp.p2 = 'ma';
+    sp.generatePStunden();
+
+    sp.fachstunden.ge.anforderung.should.equal('lk'); // simply test, if ge exists
+  });
   it('addFach should work and overwrite', () => {
     const sp = new Studienplan();
 
@@ -280,5 +289,14 @@ describe('studienplan', () => {
       faecher: [consts.faecher.la, consts.faecher.sn, consts.faecher.fr],
       belegung: consts.parseBelegungAlts('4x4'),
     });
+  });
+
+  it('getZusatzFaecher sould work', () => {
+    const sp = new Studienplan('gw', { p1: 'ge', p2: 'ma', p3: 'po', p4: 'de', p5: 'ph' }, {}, true);
+
+    sp.addDefaultFaecher();
+    sp.getZusatzFaecher().should.include('if');
+    sp.addFach(consts.faecher.if);
+    sp.getZusatzFaecher().should.not.include('if');
   });
 });
